@@ -6,3 +6,6 @@
 
 <img width="1008" height="654" alt="obraz" src="https://github.com/user-attachments/assets/0bc2d874-b262-4d56-825e-61174b3a1be8" />
 
+
+
+
