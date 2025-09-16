@@ -12,8 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-//System.Windows.Media.Imaging.GifB
-
 namespace OpenSave1
 {
     public partial class Form1 : Form
@@ -56,7 +54,6 @@ namespace OpenSave1
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            //if (openFileDialog1.ShowDialog)
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -79,10 +76,7 @@ namespace OpenSave1
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //Get the path of specified file
                 filePath = openFileDialog1.FileName;
-
-                //Read the contents of the file into a stream
                 var fileStream = openFileDialog1.OpenFile();
 
                 using (StreamReader reader = new StreamReader(fileStream))
@@ -92,7 +86,6 @@ namespace OpenSave1
                 Image myImg = Image.FromFile(filePath);
 
                 pictureBox1.Image = myImg;
-
 
                 textBox1.Text = filePath;
                 textBox2.Text = Convert.ToString(myImg.Width);
@@ -107,34 +100,23 @@ namespace OpenSave1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // Displays a SaveFileDialog so the user can save the Image
-            // assigned to Button2.
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif|Png Image|*.png|Tiff Image|*.tiff";
             saveFileDialog1.Title = "Save an Image File";
             saveFileDialog1.ShowDialog();
 
-            // If the file name is not an empty string open it for saving.
-
             if (saveFileDialog1.FileName != "")
             {
                 string fileExtension = Path.GetExtension(saveFileDialog1.FileName);
-                //Image saveImg = pictureBox1.Image;
-              //  if (pictureBox2 != null)
-               // {
-               //     saveImg = pictureBox2.Image;
-              //  }
+
                 switch (saveFileDialog1.FilterIndex)
                 {
                     case 1:
-
                         pictureBox1.Image.Save(Path.ChangeExtension(saveFileDialog1.FileName, ".jpg"), System.Drawing.Imaging.ImageFormat.Jpeg);
                         break;
-
                     case 2:
                         pictureBox1.Image.Save(Path.ChangeExtension(saveFileDialog1.FileName, ".bmp"), System.Drawing.Imaging.ImageFormat.Bmp);
                         break;
-
                     case 3:
                         pictureBox1.Image.Save(Path.ChangeExtension(saveFileDialog1.FileName, ".gif"), System.Drawing.Imaging.ImageFormat.Gif);
                         break;
@@ -190,33 +172,25 @@ namespace OpenSave1
                     pictureBox2.Image = Image.FromStream(ms);
                     SaveImageFromPictureBox2();
                 }
-              //  SaveImageFromPictureBox2();
             }
             else
             {
                 // JPEG codec not found
                 MessageBox.Show("JPEG codec not found.");
             }
-            // Compress image
-
         }
 
         private void SaveImageFromPictureBox2()
         {
-            // Displays a SaveFileDialog so the user can save the Image
-            // assigned to pictureBox2.
             SaveFileDialog saveFileDialog2 = new SaveFileDialog();
             saveFileDialog2.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
             saveFileDialog2.Title = "Save an Image File";
             saveFileDialog2.ShowDialog();
 
-            // If the file name is not an empty string open it for saving.
             if (saveFileDialog2.FileName != "")
             {
-                // Determine the selected file extension
                 string fileExtension = Path.GetExtension(saveFileDialog2.FileName);
 
-                // Determine the ImageFormat based on file extension
                 ImageFormat imageFormat = null;
                 switch (fileExtension.ToLower())
                 {
@@ -229,10 +203,8 @@ namespace OpenSave1
                     case ".gif":
                         imageFormat = ImageFormat.Gif;
                         break;
-                        // Add cases for other formats if needed
                 }
 
-                // Save the Image in the appropriate ImageFormat
                 if (imageFormat != null)
                 {
                     pictureBox2.Image.Save(saveFileDialog2.FileName, imageFormat);
@@ -269,7 +241,6 @@ namespace OpenSave1
             Bitmap bmp2 =RotateImage(bmp1, angle);
             Image newImg = (Image)bmp2;
             pictureBox2.Image = newImg;
-            // button5.PerformClick();
         }
 
         private Bitmap RotateImage(Bitmap bmp, float angle)
@@ -279,7 +250,6 @@ namespace OpenSave1
             
             using (Graphics g = Graphics.FromImage(rotatedImage))
             {
-                // Set the rotation point to the center in the matrix
                 g.TranslateTransform(bmp.Width / 2, bmp.Height / 2);
                 // Rotate
                 g.RotateTransform(angle);
@@ -294,7 +264,6 @@ namespace OpenSave1
 
         static public Bitmap contrast(Image inImg)
         {
-            // if (inImg != null) {
             Bitmap bmp1 = (Bitmap)inImg;
             Bitmap clone = bmp1;
             for (int i = 0; i < bmp1.Width; i++)
@@ -363,12 +332,8 @@ namespace OpenSave1
             int e = (int)e1;
             if (e > 255) { e = 255; }
             if (e < 0) { e = 0; }
-
             return e;
         }
-
- 
-
         private void negative_Click(object sender, EventArgs e)
         {
             Image originImg = pictureBox1.Image;
@@ -384,10 +349,8 @@ namespace OpenSave1
                     int g = cPix.G;
                     int b = cPix.B;
                     if ((r + b + g) /3 < v) { r = 255 - r; b = 255 - b; g = 255 - g; }
-
                     cPix = Color.FromArgb(r, g, b);
                     clone.SetPixel(i, j, cPix);
-
                 }
             }
             pictureBox2.Image = (Image)clone;
@@ -396,19 +359,12 @@ namespace OpenSave1
         private void vcolor_Click(object sender, EventArgs e)
         {
             Image originImg = pictureBox1.Image;
-           // int v = 64;
-          //  int v1 = 128;
-          //  int v2 = 162;
-          //  int v3 = 255;
-
             Bitmap bmp1 = (Bitmap)originImg;
             Bitmap clone = bmp1;
-
             using (Graphics g = Graphics.FromImage(clone))
             {
                 g.DrawImage(originImg, new Rectangle(0, 0, clone.Width, clone.Height));
             }
-
 
             for (int i = 0; i < bmp1.Width; i++)
             {
@@ -483,28 +439,15 @@ namespace OpenSave1
                             break;
 
                     }
-
-                    /*
-                    if (sum < v) { r1 = 30; b1 = 100; g1 = 80; }
-                    if (sum < v1 && sum > v) { r1 = 50; b1 = 100; g1 = 162; }
-                    if (sum < v2 && sum > v1) { r1 = 140; b1 = 180; g1 = 242; }
-                    if (sum < v3 && sum > v2) { r1 = 140; b1 = 180; g1 = 242; }
-                    */
-
                     cPix = Color.FromArgb(r1, g1, b1);
                     clone.SetPixel(i, j, cPix);
-
                 }
             }
             pictureBox2.Image = (Image)clone;
-
         }
-
         private void buttonwyostrz_Click(object sender, EventArgs e)
         {
-          //  int[,] tab= { { 1, 1, 1 }, { 0, 0, 0 }, { -1,-1,-1} };
             Image originImg = pictureBox1.Image;
-            //System.Security.Cryptography.X509Certificates;
             Bitmap bmp1 = (Bitmap)originImg;
             Bitmap clone = bmp1;
             for (int i = 1; i < bmp1.Width-1; i++)
@@ -523,7 +466,6 @@ namespace OpenSave1
                             }
                         }
                     }
-
                     Color cPix = bmp1.GetPixel(i, j);
                     int r = cPix.R;
                     int g = cPix.G;
@@ -546,9 +488,7 @@ namespace OpenSave1
 
         private void buttonrozm_Click(object sender, EventArgs e)
         {
-            //  int[,] tab= { { 1, 1, 1 }, { 0, 0, 0 }, { -1,-1,-1} };
             Image originImg = pictureBox1.Image;
-            //System.Security.Cryptography.X509Certificates;
             Bitmap bmp1 = (Bitmap)originImg;
             Bitmap clone = bmp1;
             for (int i = 1; i < bmp1.Width - 1; i++)
@@ -636,14 +576,10 @@ namespace OpenSave1
                     {
                         clone.SetPixel(i, j, Color.FromArgb(255, (int)derivata, (int)derivata, (int)derivata));
                     }
-
-
                 }
             }
             pictureBox2.Image = (Image)clone;
-
         }
-
         private void buttonuse_Click(object sender, EventArgs e)
         {
             Image originImg = pictureBox1.Image;
@@ -697,14 +633,12 @@ namespace OpenSave1
             }
             pictureBox2.Image = (Image)clone;
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
 
             Image originImg = pictureBox1.Image;
             Bitmap bmp1 = (Bitmap)originImg;
             Bitmap clone = bmp1;
-
             for (int i = 0; i < bmp1.Width; i++)
             {
                 for (int j = 0; j < bmp1.Height; j++)
@@ -749,8 +683,6 @@ namespace OpenSave1
                     {
                         clone.SetPixel(i, j, Color.FromArgb(255, (int)derivata, (int)derivata, (int)derivata));
                     }
-
-
                 }
             }
             pictureBox2.Image = (Image)clone;
@@ -760,7 +692,6 @@ namespace OpenSave1
         {
 
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             Image originImg = pictureBox1.Image;
@@ -800,22 +731,22 @@ namespace OpenSave1
                                 r1 = 0; g1 = 255; b1 = 255;
                                 break;
                             case int a when sum < 105:
-                                r1 = 64; g1 = 255; b1 = 191; //7
+                                r1 = 64; g1 = 255; b1 = 191; 
                                 break;
                             case int a when sum < 120:
                                 r1 = 128; g1 = 255; b1 = 128;
                                 break;
                             case int a when sum < 135:
-                                r1 = 191; g1 = 255; b1 = 64; ////
+                                r1 = 191; g1 = 255; b1 = 64; 
                                 break;
                             case int a when sum < 150:
                                 r1 = 255; g1 = 255; b1 = 0;
                                 break;
                             case int a when sum < 165:
-                                r1 = 255; g1 = 191; b1 = 0;  ///
+                                r1 = 255; g1 = 191; b1 = 0; 
                                 break;
                             case int a when sum < 180:
-                                r1 = 255; g1 = 128; b1 = 0; ///
+                                r1 = 255; g1 = 128; b1 = 0; 
                                 break;
                             case int a when sum < 195:
                                 r1 = 255; g1 = 64; b1 = 0;
@@ -832,7 +763,6 @@ namespace OpenSave1
                         }
                         cPix = Color.FromArgb(r1, g1, b1);
                         clone.SetPixel(i, j, cPix);
-
                     }
                 }
                 pictureBox2.Image = (Image)clone;
@@ -848,4 +778,5 @@ namespace OpenSave1
     
 
     
+
 
