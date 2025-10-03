@@ -10,6 +10,7 @@
 > - to do
 
 
-<img width="1008" height="654" alt="obraz" src="https://github.com/user-attachments/assets/0bc2d874-b262-4d56-825e-61174b3a1be8" />
+
+<img width="1357" height="662" alt="u" src="https://github.com/user-attachments/assets/5ba05842-77a2-4406-b6c2-48943f0e9bcc" />
 
 
