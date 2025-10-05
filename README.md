@@ -14,6 +14,7 @@
 > - [x] Binaryzation
 > - [x] Negative
 > - [x] Filter
+> - [ ] > - [ ] 🚧 ⚠️ fix bugs ⚠️ 🚧
 
 > [!WARNING]
 > ⛔ 🚨 Tested on Windows 10  🚨 ⛔
