@@ -4,10 +4,19 @@
 > - .NET Framework 4.7.2 or newer
 
 > [!NOTE]
-> - to do
+> - [x] Open & Save (file format: JPEG, PNG, BMP, GIF)
+> - [x] Show data of image
+> - [x] Compression
+> - [x] Pseudocolor (Plasma and Jet)
+> - [x] Rotataion
+> - [x] Brightness
+> - [x] Contrast
+> - [x] Binaryzation
+> - [x] Negative
+> - [x] Filter
 
 > [!WARNING]
-> - to do
+> ⛔ 🚨 Tested on Windows 10  🚨 ⛔
 
 
 
