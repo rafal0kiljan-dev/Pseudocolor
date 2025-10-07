@@ -4,6 +4,7 @@
 > - .NET Framework 4.7.2 or newer
 
 > [!NOTE]
+> # To do list
 > - [x] Open & Save (file format: JPEG, PNG, BMP, GIF)
 > - [x] Show data of image
 > - [x] Compression
