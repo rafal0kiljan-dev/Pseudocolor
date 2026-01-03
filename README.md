@@ -1,5 +1,5 @@
-> # A simple image editor in C# 🎨
-> [!IMPORTANT]
+ # A simple image editor in C# 🎨
+ [!IMPORTANT]
 > # Install:
 > - Visual Studio 2022 version 17.14.12 or newer
 > - .NET Framework 4.7.2 or newer
